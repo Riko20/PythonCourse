@@ -35,3 +35,18 @@ def groupcity(data):
 
 groupcity(data)
 
+# 2) У вас есть последовательность строк. Необходимо определить наиболее часто встречающуюся строку в последовательности.
+# Например:
+
+
+
+def most_frequent(list_var):
+    numlist = []
+    for elem in list_var:
+        numlist.append(list_var.count(elem))
+    ind = numlist.index(max(numlist))
+    ourstr = list_var[ind]
+    return ourstr
+
+print(most_frequent(['a', 'a', 'bi', 'bi', 'bi','d','d','d','d','d','d','d']))
+
