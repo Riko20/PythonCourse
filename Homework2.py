@@ -48,5 +48,15 @@ def most_frequent(list_var):
     ourstr = list_var[ind]
     return ourstr
 
-print(most_frequent(['a', 'a', 'bi', 'bi', 'bi','d','d','d','d','d','d','d']))
+print ("2:  ", most_frequent(['a', 'a', 'bi', 'bi', 'bi','d','d','d','d','d','d','d']))
+
+# 3) Дано целое число. Необходимо подсчитать произведение всех цифр в этом числе, за исключением нулей.
+
+a = 123405
+multipl = 1
+while a>0:
+    if a%10 != 0:
+        multipl *= a%10
+    a = a // 10
+print("3:  ", multipl)
 
