@@ -60,3 +60,32 @@ while a>0:
     a = a // 10
 print("3:  ", multipl)
 
+# 4) Есть массив с положительными числами и число n (def some_function(array, n)).
+# Необходимо найти n-ую степень элемента в массиве с индексом n. Если n за границами массива, тогда вернуть -1.
+array = [1,2,3,4,5,6,7,8,9]
+
+
+def arrayret(array, n):
+    if n not in array:
+        return -1
+    res = array[n] ** n
+    print(res)
+
+
+arrayret(array, 6)
+# =======================================================
+# 5) Есть строка со словами и числами, разделенными пробелами (один пробел между словами и/или числами).
+
+def stringint(stringa):
+    counter = 0
+    a = stringa.split()
+    for elem in a:
+        if elem.isalpha():
+            counter += 1
+        if elem.isdecimal():
+            counter =0
+        if counter == 3:
+            print('It`s true')
+
+
+stringint('hello 1 one two three 15 world')
