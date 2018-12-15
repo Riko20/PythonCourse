@@ -84,8 +84,11 @@ def stringint(stringa):
             counter += 1
         if elem.isdecimal():
             counter =0
-        if counter == 3:
-            return True
+    if counter > 3:
+        return False
+    else:
+        return True
 
 
-print(stringint('hello 1 one three four 3 five15 world'))
+
+print(stringint('hello 1 one three four five15 world'))
