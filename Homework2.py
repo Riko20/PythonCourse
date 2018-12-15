@@ -48,7 +48,7 @@ def most_frequent(list_var):
     ourstr = list_var[ind]
     return ourstr
 
-print ("2:  ", most_frequent(['a', 'a', 'bi', 'bi', 'bi','d','d','d','d','d','d','d']))
+print ("2:  ", most_frequent(['a', 'a', 'a', 'this is a track', 'this is a track', 'this is a track', 'this is a track']))
 
 # 3) Дано целое число. Необходимо подсчитать произведение всех цифр в этом числе, за исключением нулей.
 
@@ -69,10 +69,10 @@ def arrayret(array, n):
     if n not in array:
         return -1
     res = array[n] ** n
-    print(res)
+    return res
 
 
-arrayret(array, 6)
+print(arrayret(array, 6))
 # =======================================================
 # 5) Есть строка со словами и числами, разделенными пробелами (один пробел между словами и/или числами).
 
@@ -85,7 +85,7 @@ def stringint(stringa):
         if elem.isdecimal():
             counter =0
         if counter == 3:
-            print('It`s true')
+            return True
 
 
-stringint('hello 1 one two three 15 world')
+print(stringint('hello 1 one three four 3 five15 world'))
