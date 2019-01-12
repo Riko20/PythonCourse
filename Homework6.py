@@ -51,3 +51,77 @@ def words_deleting():
 
 words_deleting()
 
+# Задача-2
+# Текстовый файл содержит записи о телефонах и их владельцах.
+# Переписать в другой файл телефоны тех владельцев, фамилии которых начинаются с букв К и С.
+
+def contacter():
+    contlist = []
+    surnames = []
+    numbers = []
+
+    file = open("C:/Users/Dragonagek/PycharmProjects/Homework1/contacts.txt", "r")
+    file_writer = open("C:/Users/Dragonagek/PycharmProjects/Homework1/contactstrue.txt", "w")
+    opened = file.readlines()
+    for line in opened:
+        contlist.append(line.split(", "))
+
+    for list in contlist:
+        surnames.append(list[1])
+        numbers.append(list[0])
+
+    index = 0
+    for el in surnames:
+        index += 1
+        if el[0] == "К":
+            a = "Номер {0}, Surname: {1}".format(numbers[index-1], el)
+            file_writer.write(a)
+
+
+    file.close()
+    file_writer.close()
+
+contacter()
+
+# Задача-3 - не обязательна к выполнению
+# Написать декоратор который будет подавлять ошибки возникающие в теле вашей функции.
+# Например ваша функция может иметь вид
+def my_dec(func):
+    def wrapper():
+        try:
+            a = func()
+            print(a)
+        except ValueError:
+            print("ValueError dismissed")
+
+    return wrapper
+
+@my_dec
+def my_func():
+    raise ValueError("some text error")
+
+my_func()
+
+# Задача-4 - не обязательна к выполнению
+# Написать декоратор c аргументом который будет подавлять определенные ошибки возникающие в теле вашей функции.
+# Ошибки которые должен будет подавить ваш декоратор вы должны передать ему в качестве аргумента
+def main_decor(error):
+    def ins_decor(func):
+        @functools.wraps(func)
+        def wrapper():
+            try:
+                cache = func()
+            except error:
+                print(error, " interrupted")
+
+        return wrapper
+    return ins_decor
+
+@main_decor(IndexError)
+def function():
+    cache = []
+    a = cache.pop()
+    return a
+
+function()
+
