@@ -10,7 +10,7 @@
 # (10.11.12.13 -> 13)
 #
 
-import json
+
 
 
 class WorkIp(object):
@@ -63,3 +63,73 @@ print(ipwnik.get_last())
 print(ipwnik.getip_without_first())
 
 print(ipwnik.getreverseip())
+
+
+# Задача-2
+# У вас несколько JSON файлов. В каждом из этих файлов есть
+# произвольная структура данных. Вам необходимо написать
+# класс который будет описывать работу с этими файлами, а
+# именно:
+# 1) Запись в файл
+# 2) Чтение из файла
+# 3) Объединение данных из файлов в новый файл
+# 4) Получить путь относительный путь к файлу
+# 5) Получить абсолютный путь к файлу
+import os, json
+
+class WorkingJson:
+
+    def __init__(self, file):
+        self._file = file
+
+    def filling_file(self, newfile, newinf):
+        self._newfile = newfile
+        self._newinf = newinf
+        with open(self._newfile, 'w') as f:
+            json.dump(self._newinf, f)
+
+    def reading(self):
+        with open(self._file) as f:
+            data = json.load(f)
+            return data
+
+    def compicating(self, anfile, olddata, newdata):
+        self._anfile = anfile
+        olddata.update(newdata)
+        with open(self._anfile, 'w') as f:
+            json.dump(olddata, f, indent=2)
+
+    def getting_relpath(self):
+        return (os.path.relpath(self._file))
+
+    def getting_absolpass(self):
+        return (os.path.abspath(self._file))
+
+
+file = 'C:/Users/Dragonagek/Downloads/data.json'
+file2 = 'C:/Users/Dragonagek/Desktop/PythonCourse/states_titlecase.json'
+file_for_filling = 'C:/Users/Dragonagek/Desktop/PythonCourse/newjson1.json'
+file_for_compl = 'C:/Users/Dragonagek/Desktop/PythonCourse/together.json'
+
+work_json = WorkingJson(file2)
+first_readed = work_json.reading()
+print('First readed file: {}'.format(first_readed))
+
+work_json1 = WorkingJson(file)
+second_readed = work_json1.reading()
+print('Second readed file: {}'.format(second_readed))
+
+newinfo = {"krai":[{'name': 'Ukraine', 'abbreviation': 'UA'}]}
+work_json1.filling_file(file_for_filling, newinfo )
+
+
+work_json.compicating(file_for_compl, first_readed, second_readed)
+print("File that was complicated: {}".format(WorkingJson(file_for_compl).reading()))
+
+relpath = work_json.getting_relpath()
+print("Realpath: {}".format(relpath))
+
+
+abspath = work_json.getting_absolpass()
+print("Absolute pass: {}".format(abspath))
+
