@@ -133,3 +133,71 @@ print("Realpath: {}".format(relpath))
 abspath = work_json.getting_absolpass()
 print("Absolute pass: {}".format(abspath))
 
+#
+# Задача-3
+#
+# Создайте класс который будет хранить параметры для
+# подключения к физическому юниту(например switch). В своем
+# списке атрибутов он должен иметь минимальный набор
+# (unit_name, mac_address, ip_address, login, password).
+# Вы должны описать каждый из этих атрибутов в виде гетеров и
+# сеттеров(@property). У вас должна быть возможность
+# получения и назначения этих атрибутов в классе.
+
+class ConParameters():
+
+    def __init__(self, unit_name, mac_adress, ip_adress, login, password):
+        self.unit_name = unit_name
+        self.mac_adress = mac_adress
+        self.ip_adress = ip_adress
+        self.login = login
+        self.password = password
+
+    @property
+    def unit(self):
+        return self.unit_name
+
+    @unit.setter
+    def set_unit(self, value):
+        self.unit_name = value
+
+    @property
+    def mac(self):
+        return self.mac_adress
+
+    @mac.setter
+    def set_mac(self, value):
+        self.mac_adress = value
+
+    @property
+    def ip(self):
+        return self.ip_adress
+
+    @ip.setter
+    def set_ip(self, value):
+        self.ip_adress = value
+
+    @property
+    def loging(self):
+        return self.login
+
+    @loging.setter
+    def set_login(self, value):
+        self.login = value
+
+    @property
+    def passwords(self):
+        return self.password
+
+    @passwords.setter
+    def set_password(self, value):
+        self.password = value
+
+
+conparam = ConParameters('bjix', '11.12.13.14', '101.122.130.140', 'riko', 112233)
+print(conparam.unit)
+conparam.set_unit = 'aldo'
+print(conparam.unit)
+print(conparam.login)
+conparam.login = 'chicha'
+print(conparam.login)
