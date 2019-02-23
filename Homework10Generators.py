@@ -132,3 +132,50 @@ def fol():
 f = fol()
 while True:
     print(next(f))
+
+#Задача-3 (упрощенный вариант делаете его если задача 2 показалась сложной)
+# Вам нужно создать pipeline (конвеер, подобие pipeline в unix https://en.wikipedia.org/wiki/Pipeline_(Unix)).
+#
+# Схема пайплайна :
+# source ---send()--->coroutine1------send()---->coroutine2----send()------>sink
+#
+# Все что вам нужно сделать это выводить сообщение о том что было получено на каждом шаге и обработку ошибки GeneratorExit.
+#
+def source(where):
+    a = 0
+    while a < 10:
+        try:
+            a += 1
+            where.send(a)
+        except StopIteration:
+            print("Corut1 is closed")
+            break
+
+
+@corout
+def coroutine1(corut2):
+    while True:
+        val = yield
+        try:
+            print("Corut1, received: ", val)
+            corut2.send(val)
+
+        except (GeneratorExit, StopIteration):
+            print("Corut2 is closed")
+            break
+
+@corout
+def coroutine2():
+    while True:
+        val = yield
+        print("Corut2, receeived: ", val)
+
+
+
+
+cor2 = coroutine2()
+cor1 = coroutine1(cor2)
+
+source(cor1)
+cor2.close()
+source(cor1)
