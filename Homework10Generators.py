@@ -95,3 +95,40 @@ def follow(f_open, disp):
         disp.send(rl)
 
 follow(f_open, disp)
+
+#Realization N2
+
+def dis(f_op, sings):
+    while True:
+        rdl = f_op.readline()
+        if not rdl:
+            break
+        yield from gr(rdl, sings)
+
+
+
+def gr(rl, sings):
+    for sing in sings:
+        if sing in rl:
+            yield from ppr(sing)
+        else:
+            pass
+
+def ppr(s):
+    while True:
+        yield s
+        break
+
+
+
+
+
+def fol():
+    ar = ['Aloxa', 'Dave', 'Martin']
+    yield from dis(f_open, ar)
+
+
+
+f = fol()
+while True:
+    print(next(f))
