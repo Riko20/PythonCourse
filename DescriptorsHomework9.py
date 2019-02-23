@@ -30,3 +30,27 @@ print(my_class.email)
 
 my_class.email = "novalidemail"
 print(my_class.email)
+
+# Задача-2
+# Реализовать синглтон метакласс(класс для создания классов синглтонов).
+
+class Singleton(type):
+    _singleton = None
+
+    def __call__(self, *args, **kwargs):
+        if not self._singleton:
+            self._singleton = super(MyClass,self).__new__(self)
+        return self._singleton
+
+
+
+class MyClass(metaclass=Singleton):
+    print("what is there")
+
+
+myclass = MyClass()
+wooo = MyClass()
+
+
+assert id(myclass) == id(wooo)
+
