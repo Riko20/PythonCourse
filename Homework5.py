@@ -48,3 +48,20 @@ class LruCacheus:
             return wrapped
 
         return decorator
+    
+    lru = LruCacheus(4)
+
+@lru.lru_try()
+def letsgo(a):
+    if isinstance(a, tuple):
+        mynewtup = tuple([i*10 for i in a])
+        return mynewtup
+
+    return a*10
+
+letsgo((10,20))
+letsgo(20)
+letsgo(30)
+letsgo(20)
+letsgo._cache_info()
+letsgo._cache_clear()
